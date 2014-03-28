@@ -17,7 +17,7 @@ struct linux_dirent {
   char           d_name[];
 };
 
-#define BUF_SIZE 1024
+#define BUF_SIZE 1024 * 1024 * 20
 
 int main(int argc, char *argv[])
 {
