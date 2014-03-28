@@ -17,7 +17,7 @@ struct linux_dirent {
   char           d_name[];
 };
 
-#define BUF_SIZE 1024 * 1024 * 20
+#define BUF_SIZE 1024 * 50
 
 int main(int argc, char *argv[])
 {
@@ -42,7 +42,7 @@ int main(int argc, char *argv[])
     for (bpos = 0; bpos < nread; bpos += d->d_reclen) {
       d = (struct linux_dirent *) (buf + bpos);
       d_type = *(buf + bpos + d->d_reclen - 1);
-      if (d_type != DT_REG)
+      if (d_type != DT_REG && d_type != DT_UNKNOWN && d_type != DT_SYM)
         continue;
 
       printf("%s\n", d->d_name);
